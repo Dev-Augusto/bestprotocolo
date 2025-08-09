@@ -19,24 +19,46 @@
                     <img src="/img/logo/logo.png" width="120" height="60" alt="">
                 </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+            <!-- Removemos os atributos data-bs-toggle/data-bs-target -->
+            <button class="navbar-toggler" type="button" id="custom-toggler">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    {{-- Home --}}
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('pages.home') }}">Home</a>
+                        <a class="nav-link {{ request()->routeIs('pages.home') ? 'active text-primary' : '' }}" 
+                        href="{{ route('pages.home') }}">
+                            Home
+                        </a>
                     </li>
+
+                    {{-- Serviços --}}
                     @foreach (DB::table('services')->limit(3)->get() as $service)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pages.service',$service->slug) }}">{{ $service->name }}</a>
+                            <a class="nav-link {{ url()->current() === route('pages.service', $service->slug) ? 'active text-primary' : '' }}"
+                                href="{{ route('pages.service', $service->slug) }}">
+                                    {{ $service->name }}
+                            </a>
                         </li>
                     @endforeach
+
+                    {{-- Parceiros --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.partners') }}">Parceiros</a>
+                        <a class="nav-link {{ request()->routeIs('pages.partners') ? 'active text-primary' : '' }}" 
+                        href="{{ route('pages.partners') }}">
+                            Parceiros
+                        </a>
                     </li>
+
+                    {{-- Quem Somos --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.about') }}">Quem Somos</a>
+                        <a class="nav-link {{ request()->routeIs('pages.about') ? 'active text-primary' : '' }}" 
+                        href="{{ route('pages.about') }}">
+                            Quem Somos
+                        </a>
                     </li>
                 </ul>
             </div>

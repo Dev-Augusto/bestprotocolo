@@ -66,3 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Executar uma vez ao carregar a página
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggler = document.getElementById('custom-toggler');
+    const navbar = document.getElementById('navbarNav');
+
+    toggler.addEventListener('click', function () {
+        navbar.classList.toggle('show'); // abre/fecha manualmente
+    });
+
+    // Fecha o menu quando um link for clicado (em telas pequenas)
+    document.querySelectorAll('#navbarNav .nav-link').forEach(link => {
+        link.addEventListener('click', function () {
+            navbar.classList.remove('show');
+        });
+    });
+});
+
+

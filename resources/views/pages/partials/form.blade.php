@@ -6,21 +6,25 @@
                     <h2 class="section-title">Fale Conosco</h2>
                     <p class="section-subtitle">Estamos prontos para atender suas necessidades</p>
                 </div>
+                @if(session('success'))
+                    <div class="text-bg-success  text-center">{{ session('success') }}</div>
+                @endif
             </div>
             <div class="row">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <form>
+                    <form action="{{ route('send.message') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Seu Nome">
+                            <input type="text" name="name" class="form-control" placeholder="Seu Nome" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Seu Email">
+                            <input type="email" name="email" class="form-control" placeholder="Seu Email">
                         </div>
                         <div class="mb-3">
-                            <input type="tel" class="form-control" placeholder="Seu Telefone">
+                            <input type="tel" name="phone" class="form-control" placeholder="Seu Telefone">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" rows="4" placeholder="Sua Mensagem"></textarea>
+                            <textarea class="form-control" name="description" rows="4" placeholder="Sua Mensagem" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Enviar Mensagem</button>
                     </form>

@@ -1,0 +1,218 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
+
+class MakeFullModuleCommand extends Command
+{
+    protected $signature = 'make:module {name} {--m} {--r} {--s} {--c}  {--f} {--all}';
+    protected $description = 'Cria model, repositories, form request, controller e service para um módulo automaticamente usando o nome como caminho.';
+
+    public function handle()
+    {
+        $name = $this->argument('name');
+
+        // Extrai path e filename da função
+        [$path, $filename, $namespacePath] = $this->getPathAndFilename($name);
+
+        // Cria os arquivos de acordo com as flags passadas
+        if ($this->option('m') or $this->option('all')) {
+            $this->createModel($path, $filename, $namespacePath);
+        }
+
+        if ($this->option('r') or $this->option('all')) {
+            $this->createRepository($path, $filename, $namespacePath);
+        }
+
+        if ($this->option('s') or $this->option('all')) {
+            $this->createService($path, $filename, $namespacePath);
+        }
+
+        if ($this->option('c') or $this->option('all')) {
+            $this->createController($path, $filename, $namespacePath);
+        }
+        if ($this->option('f') or $this->option('all')) {
+            $this->createFormRequest($path, $filename, $namespacePath);
+        }
+
+        $this->info('Arquivos criados com sucesso!');
+    }
+
+    protected function getPathAndFilename($name)
+    {
+        // Detecta se há separadores (\ ou /) no nome fornecido
+        $segments = preg_split('/[\/\\\\]+/', $name);
+
+        // O último elemento é o nome do arquivo (classe)
+        $filename = array_pop($segments);
+
+        // O restante é o caminho do namespace (usa '\' como separador para o namespace)
+        $namespacePath = implode('\\', $segments);
+
+        // Para o caminho do diretório, usa o separador de diretórios adequado ao sistema de arquivos
+        $path = implode(DIRECTORY_SEPARATOR, $segments);
+
+        return [$path, $filename, $namespacePath];
+    }
+
+    protected function createModel($path, $filename, $namespacePath)
+    {
+        $tableName = $this->convertToSnakeCase($filename);
+        $fillable = [];
+
+        // Verifica se a tabela existe no banco de dados
+        if (\Schema::hasTable($tableName)) {
+            // Pega as colunas da tabela
+            $columns = \Schema::getColumnListing($tableName);
+
+            // Remove colunas padrão que não devem ser fillable
+            $fillable = array_diff($columns, ['id', 'created_at', 'updated_at', 'deleted_at']);
+        }
+
+        $fillableString = implode("', '", $fillable);
+
+        $modelTemplate = "<?php
+
+namespace App\Models\\{$namespacePath};
+
+use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class $filename extends BaseModel
+{
+    use HasFactory;
+    protected \$table = '$tableName';
+    protected \$primaryKey = 'id';
+    protected \$fillable = ['$fillableString'];
+}";
+
+        $directory = app_path("/Models/{$path}");
+        File::ensureDirectoryExists($directory);
+        File::put("$directory/{$filename}.php", $modelTemplate);
+
+        $this->info("Model $filename criado em $directory");
+    }
+
+    protected function createRepository($path, $filename, $namespacePath)
+    {
+        $repositoryTemplate = "<?php
+namespace App\Repositories\\{$namespacePath};
+
+use App\Models\\{$namespacePath}\\{$filename};
+use App\Repositories\AbstractRepository;
+
+class {$filename}Repository extends AbstractRepository
+{
+    public function __construct({$filename} \$model)
+    {
+        parent::__construct(\$model);
+    }
+}";
+
+        $directory = app_path("/Repositories/{$path}");
+        File::ensureDirectoryExists($directory);
+        File::put("$directory/{$filename}Repository.php", $repositoryTemplate);
+
+        $this->info("Repository $filename criado em $directory");
+    }
+
+    protected function createService($path, $filename, $namespacePath)
+    {
+        $serviceTemplate = "<?php
+namespace App\Services\\{$namespacePath};
+
+use App\Repositories\\{$namespacePath}\\{$filename}Repository;
+use App\Services\AbstractService;
+
+class {$filename}Service extends AbstractService
+{
+    public function __construct({$filename}Repository \$repository)
+    {
+        parent::__construct(\$repository);
+    }
+}";
+
+        $directory = app_path("/Services/{$path}");
+        File::ensureDirectoryExists($directory);
+        File::put("$directory/{$filename}Service.php", $serviceTemplate);
+
+        $this->info("Service $filename criado em $directory");
+    }
+
+    protected function createController($path, $filename, $namespacePath)
+    {
+        $controllerTemplate = "<?php
+
+namespace App\Http\Controllers\\{$namespacePath};
+
+use App\Http\Controllers\AbstractController;
+use App\Services\\{$namespacePath}\\{$filename}Service;
+use Exception;
+use Illuminate\Http\Response;
+
+class {$filename}Controller extends AbstractController
+{
+    public function __construct({$filename}Service \$service)
+    {
+        \$this->service = \$service;
+    }
+}";
+
+        $directory = app_path("/Http/Controllers/{$path}");
+        File::ensureDirectoryExists($directory);
+        File::put("$directory/{$filename}Controller.php", $controllerTemplate);
+
+        $this->info("Controller $filename criado em $directory");
+    }
+
+    protected function createFormRequest($path, $filename, $namespacePath)
+    {
+
+        // Template do FormRequest
+        $formRequestTemplate = "<?php
+
+namespace App\Http\Requests\\{$namespacePath};
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class {$filename}Request extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            // Adicione suas regras de validação aqui
+        ];
+    }
+}";
+
+        // Verifica e cria o diretório caso não exista
+        $directory = app_path("/Http/Requests/{$path}");
+        File::ensureDirectoryExists($directory);
+
+        // Cria o arquivo do FormRequest no diretório especificado
+        File::put("$directory/{$filename}Request.php", $formRequestTemplate);
+
+        // Exibe uma mensagem informando que o FormRequest foi criado
+        $this->info("FormRequest {$filename} criado em $directory");
+    }
+
+    public function convertToSnakeCase(string $string): string
+    {
+        return strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $string));
+    }
+}

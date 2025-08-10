@@ -58,9 +58,9 @@
                                 <h6 class="fw-bold mb-2">Adicionar Novas Imagens</h6>
                                 <div id="newImagesWrapper" class="row g-3">
                                     <div class="col-12 col-md-12">
-                                        <input type="text" name="partner[][name]" class="form-control mb-2 w-100" placeholder="Nome da Entidade">
-                                        <input type="text" name="partner[][profission]" class="form-control mb-2 w-100" placeholder="Área de Actuação">
-                                        <input type="file" name="partner[][image]" class="form-control mb-2 w-100">
+                                        <input type="text" name="partner[new][name]" class="form-control mb-2 w-100" placeholder="Nome da Entidade">
+                                        <input type="text" name="partner[new][profission]" class="form-control mb-2 w-100" placeholder="Área de Actuação">
+                                        <input type="file" name="partner[new][image]" class="form-control mb-2 w-100">
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-sm btn-outline-primary mt-2" id="addNewImage">
@@ -86,9 +86,9 @@ document.getElementById('addNewImage').addEventListener('click', function () {
         const col = document.createElement('div');
         col.classList.add('col-12', 'col-md-12');
         col.innerHTML = `
-            <input type="text" name="partner[][name]" class="form-control mb-2 w-100" placeholder="Nome da Entidade">
-            <input type="text" name="partner[][profission]" class="form-control mb-2 w-100" placeholder="Área de Actuação">
-            <input type="file" name="partner[][image]" class="form-control mb-2 w-100">
+            <input type="text" name="partner[new][name]" class="form-control mb-2 w-100" placeholder="Nome da Entidade">
+            <input type="text" name="partner[new][profission]" class="form-control mb-2 w-100" placeholder="Área de Actuação">
+            <input type="file" name="partner[new][image]" class="form-control mb-2 w-100">
         `;
         wrapper.appendChild(col);
 });

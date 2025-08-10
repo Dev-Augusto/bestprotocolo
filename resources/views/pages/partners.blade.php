@@ -38,7 +38,7 @@
                     <div class="col-md-4 col-lg-3">
                         <div class="card partner-card h-100">
                             <div class="card-body text-center p-4">
-                                <img src="/img/logo/{{ $partner->image }}" alt="Buffet Sabor & Arte" class="img-fluid mb-3" style="max-height: 80px;">
+                                <img src="{{ asset('storage/img/partners/'.$partner->image) }}" alt="Buffet Sabor & Arte" class="img-fluid mb-3" style="max-height: 80px;">
                                 <h5>{{ $partner->name }}</h5>
                                 <p class="text-muted">{{ $partner->profission }}</p>
                             </div>

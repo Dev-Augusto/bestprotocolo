@@ -34,4 +34,23 @@ class MessageController extends AbstractController
             return redirect()->back();
         }
     }
+
+
+    public function destroy(int $id)
+    {
+        try {
+            DB::beginTransaction();
+            $this->service->destroy($id);
+            DB::commit();
+            return redirect()->back()->with('success','Mensagem eliminada!');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+             Log::channel('errors')->error('Erro capturado: ' . $e->getMessage(), [
+                'file' => $e->getFile() . "\n",
+                'line' => $e->getLine() . "\n",
+                'trace' => $e->getTraceAsString() . "\n",
+            ]);
+            return redirect()->back();
+        }
+    }
 }

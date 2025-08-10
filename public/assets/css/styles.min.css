@@ -32,7 +32,7 @@
   --bs-gray-700: #4f5467;
   --bs-gray-800: #11142d;
   --bs-gray-900: #223640;
-  --bs-primary: #1e4db7;
+  --bs-primary: #b89345;
   --bs-secondary: #1a97f5;
   --bs-success: #39cb7f;
   --bs-info: #0bb2fb;
@@ -16062,3 +16062,39 @@ ul {
 }
 
 /*# sourceMappingURL=styles.min.css.map */
+
+/* Alterar todas as cores primary para #b89345 */
+.bg-primary {
+    background-color: #b89345 !important;
+}
+
+.btn-primary {
+    background-color: #b89345;
+    border-color: #b89345;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #a5823d;
+    border-color: #a5823d;
+}
+
+.text-primary {
+    color: #b89345 !important;
+}
+
+.border-primary {
+    border-color: #b89345 !important;
+}
+
+/* Se estiver usando Bootstrap 5, adicione também: */
+.btn-outline-primary {
+    color: #b89345;
+    border-color: #b89345;
+}
+
+.btn-outline-primary:hover {
+    background-color: #b89345;
+    color: white;
+}

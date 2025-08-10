@@ -35,7 +35,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 mb-4">
-                    <img src="/img/services/{{ $service->slug }}/{{ $service->image }}" alt="{{ $service?->about?->title }}" class="img-fluid rounded">
+                    <img src="{{ asset('storage/img/services/'.$service->slug.'/'. $service->image) }}" alt="{{ $service?->about?->title }}" class="img-fluid rounded">
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 @foreach ($service?->images as $image)
                 <div class="col-md-4 mb-4">
                     <div class="gallery-item">
-                        <img src="/img/services/{{ $service->slug }}/{{ $image->img }}" alt="{{ $service?->about?->title }}" class="img-fluid rounded">
+                        <img src="{{ asset('storage/img/services/'.$service->slug.'/'. $image->img) }}" alt="{{ $service?->about?->title }}" class="img-fluid rounded">
                     </div>
                 </div>
                 @endforeach

@@ -20,14 +20,14 @@ abstract class AbstractController extends Controller
         $this->service = $service;
     }
 
-    public function handleFileUpload($validated)
+    public function handleFileUpload($validated, $destination = "uploads")
     {
         Session::forget('temp_files');
         $tempFiles = [];
         $dataValidated = $validated->validated();
 
         // Função recursiva para lidar com uploads de arquivos
-        $processUploads = function (&$data, $fieldPrefix = '') use (&$processUploads, &$tempFiles, $validated) {
+        $processUploads = function (&$data, $fieldPrefix = '') use (&$processUploads, &$tempFiles, $validated, $destination) {
             foreach ($data as $field => &$value) {
                 $fullField = $fieldPrefix ? "{$fieldPrefix}.{$field}" : $field;
 
@@ -36,7 +36,7 @@ abstract class AbstractController extends Controller
                     $processUploads($value, $fullField);
                 } elseif ($validated->hasFile($fullField)) {
                     // Se o campo for um arquivo, faz o upload
-                    $path = $this->uploadFile($validated->file($fullField));
+                    $path = $this->uploadFile($validated->file($fullField), $destination);
                     $tempFiles[$fullField] = $path;
                     $value = $path;
                 }
@@ -50,10 +50,11 @@ abstract class AbstractController extends Controller
         return $dataValidated;
     }
 
-    public function uploadFile($file)
+    public function uploadFile($file, $destination = 'uploads')
     {
         $filename = now()->format('YmdHis') . '_' . $file->getClientOriginalName();
-        $file->storeAs($this->uploadDirectory, $filename, 'public');
+        $dest = $destination == 'uploads' ? $this->uploadDirectory : $destination;
+        $file->storeAs($dest, $filename, 'public');
         return $filename;
     }
 

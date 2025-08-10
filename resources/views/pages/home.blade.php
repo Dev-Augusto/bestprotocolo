@@ -3,7 +3,7 @@
 @section('content')
      <!-- Hero Section com imagem fixa -->
     <section class="hero-section">
-        <div class="hero-content" style="background: url('/img/hero-bg.jpg');">
+        <div class="hero-content">
             <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInDown">{{ $slider->title }}</h1>
             <p class="lead mb-4 animate__animated animate__fadeInDown animate__delay-1s">{{ $slider->description }}</p>
             <a href="{{ $slider->url_btn }}" class="btn btn-primary btn-lg animate__animated animate__fadeInUp animate__delay-2s">{{ $slider->name_btn }}</a>

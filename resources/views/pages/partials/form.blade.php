@@ -32,9 +32,9 @@
                 <div class="col-lg-6">
                     <div class="contact-info">
                         <h4 class="mb-4">Informações de Contato</h4>
-                        <p><i class="fas fa-map-marker-alt me-2"></i> Av. Principal, 1234 - Centro, Cidade - Estado</p>
-                        <p><i class="fas fa-phone me-2"></i> (244) 924 354 356</p>
-                        <p><i class="fas fa-envelope me-2"></i> geral@bestprotocolo.com</p>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> Av. Fidel de Castro, Estrada do Kikuxi, Viana, Luanda, Angola</p>
+                        <p><i class="fas fa-phone me-2"></i> <a href="tel:924 354 356" class="text-muted">(244) 924 354 356</a></p>
+                        <p><i class="fas fa-envelope me-2"></i> <a href="maito:geral@bestprotocolo.com" class="text-muted"> geral@bestprotocolo.com</a></p>
                         
                         <div class="social-media mt-4">
                             <h5 class="mb-3">Nos Siga</h5>

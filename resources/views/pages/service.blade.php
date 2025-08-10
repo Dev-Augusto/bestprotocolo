@@ -46,7 +46,7 @@
         <div class="container">
             <div class="row text-center mb-5">
                 <div class="col">
-                    <h2>Nossos Garçons em Acção</h2>
+                    <h2>Nossos {{ $service->name }} em Acção</h2>
                     <p class="text-muted">Registros de eventos realizados</p>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 @foreach ($service?->images as $image)
                 <div class="col-md-4 mb-4">
                     <div class="gallery-item">
-                        <img src="{{ asset('storage/img/services/'.$service->slug.'/'. $image->img) }}" alt="{{ $service?->about?->title }}" class="img-fluid rounded">
+                        <img src="{{ asset('storage/img/services/'.$service->slug.'/'. $image->img) }}" alt="{{ $service?->about?->title }}" witdh="100%"  height="300" class="img-fluid rounded">
                     </div>
                 </div>
                 @endforeach

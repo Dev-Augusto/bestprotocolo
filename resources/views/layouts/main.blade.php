@@ -79,18 +79,10 @@
                 <!-- Coluna de redes sociais (centro) -->
                 <div class="col-md-4 text-center mb-3 mb-md-0">
                     <div class="social-links">
-                        <a href="#" class="text-white mx-2" aria-label="Facebook">
-                            <i class="fab fa-facebook-f fa-lg"></i>
-                        </a>
-                        <a href="#" class="text-white mx-2" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-lg"></i>
-                        </a>
-                        <a href="#" class="text-white mx-2" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in fa-lg"></i>
-                        </a>
-                        <a href="https://wa.me/SEUNUMERO" class="text-white mx-2" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp fa-lg"></i>
-                        </a>
+                        <a href="https://www.facebook.com/share/1FWumMk6DQ/?mibextid=wwXIfr" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="https://www.instagram.com/best_protocolo?igsh=Y3Q3MXhkZW9lbHlh&utm_source=qr" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://www.tiktok.com/@bestprotocolo?_t=ZM-8ylTYheYEyr&_r=1" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-tiktok fa-lg"></i></a>
+                        <a href="https://wa.me/244976233933" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-whatsapp fa-lg"></i></a>
                     </div>
                 </div>
                 
@@ -103,7 +95,7 @@
         </div>
     </footer>
     <!-- Botão WhatsApp Flutuante -->
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title="Fale conosco pelo WhatsApp">
+    <a href="https://wa.me/244976233933" class="whatsapp-float" target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title="Fale conosco pelo WhatsApp">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
 

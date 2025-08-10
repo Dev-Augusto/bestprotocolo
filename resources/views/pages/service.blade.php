@@ -60,7 +60,7 @@
                 @endforeach
             </div>
             <div class="text-center mt-4">
-                <a href="#contato" class="btn btn-primary btn-lg">Contrate Nossos Serviços</a>
+                <a href="https://wa.me/244976233933" rel="external" target="_blank" class="btn btn-primary btn-lg">Contrate Nossos Serviços</a>
             </div>
         </div>
     </section>

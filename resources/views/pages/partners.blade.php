@@ -38,7 +38,7 @@
                     <div class="col-md-4 col-lg-3">
                         <div class="card partner-card h-100">
                             <div class="card-body text-center p-4">
-                                <img src="{{ asset('storage/img/partners/'.$partner->image) }}" alt="Buffet Sabor & Arte" class="img-fluid mb-3" style="max-height: 80px;">
+                                <img src="{{ asset('storage/img/partners/'.$partner->image) }}" alt="Buffet Sabor & Arte" class="img-fluid mb-3" style="max-height: 90px;">
                                 <h5>{{ $partner->name }}</h5>
                                 <p class="text-muted">{{ $partner->profission }}</p>
                             </div>
@@ -52,7 +52,7 @@
                     <div class="bg-light p-4 rounded">
                         <h3 class="text-primary mb-3">Torne-se nosso parceiro</h3>
                         <p class="mb-4">Se sua empresa compartilha nosso compromisso com qualidade e excelência, gostaríamos de conversar sobre possíveis parcerias.</p>
-                        <a href="#contato" class="btn btn-primary btn-lg">Envie sua proposta</a>
+                        <a href="https://wa.me/244976233933" rel="external" target="_blank" class="btn btn-primary btn-lg">Envie sua proposta</a>
                     </div>
                 </div>
             </div>

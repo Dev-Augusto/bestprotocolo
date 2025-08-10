@@ -77,14 +77,14 @@
                 </div>
                 
                 <!-- Coluna de redes sociais (centro) -->
-                <div class="col-md-4 text-center mb-3 mb-md-0">
+                {{-- <div class="col-md-4 text-center mb-3 mb-md-0">
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/1FWumMk6DQ/?mibextid=wwXIfr" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-facebook-f fa-lg"></i></a>
                         <a href="https://www.instagram.com/best_protocolo?igsh=Y3Q3MXhkZW9lbHlh&utm_source=qr" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
                         <a href="https://www.tiktok.com/@bestprotocolo?_t=ZM-8ylTYheYEyr&_r=1" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-tiktok fa-lg"></i></a>
                         <a href="https://wa.me/244976233933" target="_blank" rel="external" class="text-white mx-2"><i class="fab fa-whatsapp fa-lg"></i></a>
                     </div>
-                </div>
+                </div> --}}
                 
                 <!-- Coluna de links legais -->
                 <div class="col-md-4 text-center text-md-end">

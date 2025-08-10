@@ -31,61 +31,7 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Destaques -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="/img/slides/img-r.jpg" alt="Evento de destaque" class="img-fluid rounded">
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="mb-4">{{ $about->home_title }}</h2>
-                    <p>{{ $about->home_description }}</p>
-                    @php
-                        $list = is_array($about->list) 
-                        ? $about->list 
-                        : json_decode($about->list, true);
-                    @endphp
-                    <ul class="list-unstyled">
-                        @foreach($list as $value)
-                        <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> {{ $value }}</li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('pages.about') }}" class="btn btn-primary mt-3">Conheça Nossa História</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col">
-                    <h2>O Que Dizem Nossos Clientes</h2>
-                </div>
-            </div>
-            <div class="row">
-                @foreach ($clients as $client)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="mb-3 text-warning">
-                                @for($i = 0; $i <= ($client->stars - 1 ); $i++)
-                                    <i class="fas fa-star"></i>
-                                @endfor
-                            </div>
-                            <p class="card-text">"{{ $client->description }}"</p>
-                            <h5 class="card-title">{{ $client->name }}</h5>
-                            <p class="text-muted">{{ $client->type }}</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                <a href="{{ route('pages.about') }}" class="btn btn-primary mt-3">Conheça Nossa História</a>
             </div>
         </div>
     </section>
